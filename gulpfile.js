@@ -204,7 +204,7 @@ gulp.task("scss", function() {
       })
     )
     .pipe(cssnano())
-    .pipe(gulp.dest("_css"))
+    .pipe(gulp.dest("./dist/_css"))
     .pipe(
       browserSync.reload({
         stream: true

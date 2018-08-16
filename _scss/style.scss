@@ -228,7 +228,7 @@ nav {
 
 	& > li {
 		display: inline-block;
-		width: calc(50% - .5em);
+		width: calc(50% - 0.5em);
 		vertical-align: top;
 		border-top: thin solid $border_secondary;
 
@@ -238,14 +238,14 @@ nav {
 	}
 
 	a {
-		padding: .5em;
+		padding: 0.5em;
 	}
 
 	ol {
 		position: relative;
 		color: $black;
 		font-weight: normal;
-		margin: .5em 0 .5em 1em;
+		margin: 0.5em 0 0.5em 1em;
 		padding-left: 0;
 
 		li {
@@ -260,7 +260,7 @@ nav {
 
 			@for $i from 1 through 3 {
 				&:nth-last-child(#{$i}) {
-					$opacity : $i * .25;
+					$opacity: $i * 0.25;
 					opacity: $opacity;
 				}
 			}
@@ -269,7 +269,7 @@ nav {
 
 	a {
 		display: block;
-		padding: .5em;
+		padding: 0.5em;
 
 		&:hover {
 			text-decoration: none;
@@ -319,7 +319,8 @@ nav {
 	color: $blue;
 	position: relative;
 
-	&:hover, &:focus  {
+	&:hover,
+	&:focus {
 		border-color: $blue $blue transparent;
 	}
 
@@ -344,7 +345,9 @@ nav {
 		border-color: $blue;
 	}
 
-	p { margin: 0; }
+	p {
+		margin: 0;
+	}
 
 	ol {
 		list-style: decimal;
@@ -375,7 +378,8 @@ nav {
 		display: inline;
 	}
 
-	&, .content_item:last-child & {
+	&,
+	.content_item:last-child & {
 		display: none;
 	}
 }
@@ -392,8 +396,6 @@ nav {
 		}
 	}
 }
-
-
 
 // Meta ================================================================
 .group {
