@@ -566,6 +566,58 @@ nav {
 	@extend %no-select;
 }
 
+.print {
+	display: none;
+}
+@media print {
+	* {
+		border: none !important;
+	}
+	.no_print {
+		display: none;
+	}
+	.print {
+		display: block;
+	}
+
+	.split {
+		display: block;
+	}
+
+	.split_container {
+		&.main,
+		&.side {
+			width: 100%;
+			padding: 1em;
+			margin: 0;
+		}
+	}
+
+	.content_list,
+	.box {
+		padding: 0;
+	}
+
+	.box {
+		font-size: smaller;
+		margin-bottom: 1em;
+	}
+
+	.meta_value {
+		display: block;
+	}
+
+	.source_title_box a {
+		color: $black;
+		text-decoration: none;
+	}
+
+	a {
+		color: $blue;
+		text-decoration: underline;
+	}
+}
+
 .flash {
 	animation: flash 400ms;
 

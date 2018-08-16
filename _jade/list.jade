@@ -20,22 +20,33 @@ section
 
     .split_container.side.no_select
       .meta
-        .box
+        .box.length_box
           h3 
-            span.meta_label= "List length: "
+            span.meta_label= "Length: "
             span.meta_value= list.length
         if list.source_title
-          .box
+          .box.source_title_box
             h3
               span.meta_label= "Source: "
               span.meta_value
                 a(href=list.source_url)= list.source_title
+        if list.source_url
+          .box.source_url_box
+            h3
+              span.meta_label= "Source url: "
+              span.meta_value
+                a(href=list.source_url)= list.source_url
         if list.updated
-            .box
+            .box.updated_box
               h3
                 span.meta_label= "Updated: "
                 span.meta_value= list.updated
-      .operations
+        .print
+          .box.find_mode_box
+              h3
+                span.meta_label= "Find more lists: "
+                span.meta_value= "https://plaintextlist.com"
+      .operations.no_print
         h3= "List order"
         label.box.sort_default
           input(type="radio", onchange="sort('default')", name="sort", checked)
@@ -49,7 +60,7 @@ section
         label.box.sort_rand
           input(type="radio", onclick="sort('rand')", name="sort")
           span= "Randomize"
-      .operations
+      .operations.no_print
         h3= "List style"
         label.box.style_default
           input(type="radio", onchange="listStyle('default')", name="list_style", checked)
@@ -66,7 +77,6 @@ section
         label.box.style_checkboxes
           input(type="radio", onchange="listStyle('checkboxes')", name="list_style")
           span= "Checkboxes"
-
       +ad()
 
 +footer()
