@@ -51,6 +51,16 @@ h6 {
 
 h1 {
 	font-size: 1.8em;
+
+	a {
+		color: $blue;
+	}
+}
+
+h2 {
+	.index & {
+		cursor: default;
+	}
 }
 
 h3 {
@@ -175,6 +185,7 @@ section {
 // Intro ===============================================================
 .intro {
 	border-bottom: thin solid $border_primary;
+	cursor: default;
 }
 
 // Breadcrumb ==========================================================
@@ -546,29 +557,6 @@ nav {
 }
 .time {
 	@include icon("⏰");
-}
-
-// Night mode ==========================================================
-.night_toggle_label {
-	float: right;
-
-	&, input[type="checkbox"] {
-		cursor: pointer
-	}
-
-	input[type="checkbox"] {
-		margin-right: .5em;
-	}
-}
-.night {
-	body {
-		filter: invert(1);
-		background: black;
-	}
-
-	img {
-		filter: invert(1);
-	}
 }
 
 // Utilities ===========================================================
