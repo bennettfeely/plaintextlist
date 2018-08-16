@@ -10,12 +10,11 @@ cssnano = require("gulp-cssnano");
 
 coffee = require("gulp-coffee");
 
-browserSync = require("browser-sync"); 
+browserSync = require("browser-sync");
 readTree = require("./readTree");
 rename = require("gulp-rename");
 const path = require("path");
 const fs = require("fs");
-
 
 // Functions =================================================================
 titleCase = function(str) {
@@ -84,8 +83,14 @@ gulp.task("coffee", function() {
     );
 });
 
+// Compile jade
 gulp.task("jade", function() {
-  return readTree(function(err, full_list_obj, popular_list_obj, index_list_obj) {
+  return readTree(function(
+    err,
+    full_list_obj,
+    popular_list_obj,
+    index_list_obj
+  ) {
     if (err) {
       console.error("Error loading tree", err);
       return;
@@ -98,7 +103,6 @@ gulp.task("jade", function() {
 
       sorted_full.push({ title, list_data });
     }
-
     sorted_full.sort(function(a, b) {
       return a.title.localeCompare(b.title);
     });
@@ -118,10 +122,11 @@ gulp.task("jade", function() {
       var category = dir.title;
 
       if (!fs.existsSync(dir.title)) {
-        mkDirByPathSync('./dist/' + dir.title);
+        mkDirByPathSync("./dist/" + dir.title);
         console.log("New 📁 ./dist/" + dir.title);
       }
 
+      // Compile category pages
       gulp
         .src(["./_jade/**/category.jade"])
         .pipe(
@@ -133,70 +138,60 @@ gulp.task("jade", function() {
             }
           })
         )
-        .pipe(htmlmin({
-          collapseWhitespace: true
-        }))
+        .pipe(
+          htmlmin({
+            collapseWhitespace: true
+          })
+        )
         .pipe(rename("index.html"))
-        .pipe(gulp.dest('./dist/' + dir.title));
+        .pipe(gulp.dest("./dist/" + dir.title));
     });
 
+    // Compile list pages
     sorted_index.forEach(function(list) {
-      var list_url = './dist/' + list.list_data.category + "/" + list.list_data.folder;
+      var list_url =
+        "./dist/" + list.list_data.category + "/" + list.list_data.folder;
 
       if (!fs.existsSync(list_url)) {
         mkDirByPathSync(list_url);
-        console.log("-- New 📁 ./dist/" + list_url);
+        console.log("-- New list 📁 " + list_url);
       }
 
-      gulp
-        .src(["./_jade/**/list.jade"])
+      // Run Jade
+      return gulp
+        .src(["./_jade/**/index.jade"])
         .pipe(
           jade({
             pretty: true,
             data: {
-              list: list.list_data,
+              full_list: sorted_full,
+              titleCase,
+              capitalize,
+              popular_list: popular_list_obj,
+              titleCase,
+              capitalize,
+              index_list: sorted_index,
+              titleCase,
               capitalize
             }
           })
         )
-        .pipe(htmlmin({
-          collapseWhitespace: true
-        }))
-        .pipe(rename("index.html"))
-        .pipe(gulp.dest('./dist/' + list.list_data.category + "/" + list.list_data.folder));
+        .pipe(
+          htmlmin({
+            collapseWhitespace: true
+          })
+        )
+        .pipe(gulp.dest("./dist"))
+        .pipe(
+          browserSync.reload({
+            stream: true
+          })
+        );
     });
-
-    // Run Jade
-    return gulp
-      .src(["./_jade/**/index.jade"])
-      .pipe(
-        jade({
-          pretty: true,
-          data: {
-            full_list: sorted_full,
-            titleCase,
-            capitalize,
-            popular_list: popular_list_obj,
-            titleCase,
-            capitalize,
-            index_list: sorted_index,
-            titleCase,
-            capitalize
-          }
-        })
-      )
-      .pipe(htmlmin({
-        collapseWhitespace: true
-      }))
-      .pipe(gulp.dest("./dist"))
-      .pipe(
-        browserSync.reload({
-          stream: true
-        })
-      );
   });
 });
 
+// Compile SCSS
 gulp.task("scss", function() {
   return gulp
     .src("_scss/style.scss")
@@ -217,13 +212,16 @@ gulp.task("scss", function() {
     );
 });
 
+// Build task for deployment
 gulp.task("build", function() {
   gulp.run("coffee", "jade", "scss");
+  gulp.src("_img/*").pipe(gulp.dest("./dist/_img"));
+  gulp.src("_js/*").pipe(gulp.dest("./dist/_js"));
 });
 
 gulp.task("default", function() {
-  // gulp.run('coffee', 'jade');
-  gulp.run("coffee", "jade", "scss", "sync");
+  gulp.run("build", "sync");
+
   gulp.watch("./_coffee/*", function() {
     return gulp.run("coffee");
   });
