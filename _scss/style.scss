@@ -308,8 +308,16 @@ nav {
 	color: $blue;
 	position: relative;
 
-	&:hover {
-		border-color: $blue $blue $white;
+	&:hover, &:focus  {
+		border-color: $blue $blue transparent;
+	}
+
+	&:hover span {
+		text-decoration: underline;
+	}
+
+	&:focus {
+		outline: none;
 	}
 }
 
@@ -318,6 +326,10 @@ nav {
 	margin: -1px 0 0;
 
 	button:hover + & {
+		border-color: $blue;
+	}
+
+	button:focus + & {
 		border-color: $blue;
 	}
 
@@ -411,16 +423,6 @@ nav {
 		cursor: pointer;
 		font-weight: bold;
 		border-top: thin solid $border_secondary;
-
-		&.is-changed {
-			animation: flash 400ms;
-
-			@keyframes flash {
-				0% {
-					background: yellow;
-				}
-			}
-		}
 
 		&:first-of-type {
 			margin-top: 0.5em;
@@ -572,4 +574,14 @@ nav {
 // Utilities ===========================================================
 .no_select {
 	@extend %no-select;
+}
+
+.flash {
+	animation: flash 400ms;
+
+	@keyframes flash {
+		0% {
+			background: yellow;
+		}
+	}
 }

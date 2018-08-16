@@ -76,7 +76,7 @@ gulp.task("coffee", function() {
   return gulp
     .src("./_coffee/*")
     .pipe(coffee())
-    .pipe(gulp.dest("./dist/_js/"))
+    .pipe(gulp.dest("_js/"))
     .pipe(
       browserSync.reload({
         stream: true
@@ -118,8 +118,8 @@ gulp.task("jade", function() {
       var category = dir.title;
 
       if (!fs.existsSync(dir.title)) {
-        mkDirByPathSync(dir.title);
-        console.log("New 📁 " + dir.title);
+        mkDirByPathSync('./dist/' + dir.title);
+        console.log("New 📁 ./dist/" + dir.title);
       }
 
       gulp
@@ -141,11 +141,11 @@ gulp.task("jade", function() {
     });
 
     sorted_index.forEach(function(list) {
-      var list_url = list.list_data.category + "/" + list.list_data.folder;
+      var list_url = './dist/' + list.list_data.category + "/" + list.list_data.folder;
 
       if (!fs.existsSync(list_url)) {
         mkDirByPathSync(list_url);
-        console.log("-- New 📁 " + list_url);
+        console.log("-- New 📁 ./dist/" + list_url);
       }
 
       gulp
@@ -209,7 +209,7 @@ gulp.task("scss", function() {
       })
     )
     .pipe(cssnano())
-    .pipe(gulp.dest("./dist/_css"))
+    .pipe(gulp.dest("_css"))
     .pipe(
       browserSync.reload({
         stream: true

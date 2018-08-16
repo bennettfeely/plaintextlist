@@ -11,8 +11,7 @@ section
   .wrapper.split
     .split_container.main
       h1.list_title.no_select= capitalize(list.title)
-      button.copy.no_select(data-clipboard-target=".content_list")
-        span= "Copy list to clipboard"
+      .copy_wrapper
       .content_list_wrapper
         .content_list.default
           each item, i in list.content

@@ -1,10 +1,9 @@
 var html = document.querySelector('html');
 var content_list_wrapper = document.querySelector('.content_list_wrapper');
 
-
 // List functions
 if (document.querySelector('html').classList.contains('list')) {
-	// Add a comma to each list item
+	// Add a comma and checkbox to each list item
 	var list_items = document.querySelectorAll('.content_item');
 	var i;
 	for (i = 0; i < list_items.length; i++) { 
@@ -14,13 +13,35 @@ if (document.querySelector('html').classList.contains('list')) {
 
 	// Clone the list for resetting
 	var list = document.querySelector('.content_list').cloneNode(true);
+
+	// Append a copypate button
+	if (ClipboardJS.isSupported()) {
+		var default_text = '<span>Copy list to clipboard</span>';
+
+		content_list_wrapper.insertAdjacentHTML('beforebegin', '<button class="copy no_select" data-clipboard-target=".content_list">' + default_text +'</button>');
+	
+		var clipboard = new ClipboardJS('.copy');
+		clipboard.on('success', function(e) {
+			flash('.copy');
+			flash('.content_list');
+			
+			document.querySelector('.copy').innerHTML = list_items.length + ' items copied!';
+
+			setTimeout(function(){
+				document.querySelector('.copy').innerHTML = default_text;
+			}, 2000);
+		});
+		clipboard.on('error', function(e) {
+			console.log(e);
+		});
+	}
 }
 
 // State change indicator
 function flash(elem) {
-	document.querySelector(elem).classList.add('is-changed');
+	document.querySelector(elem).classList.add('flash');
 	setTimeout(function() {
-		document.querySelector(elem).classList.remove('is-changed');
+		document.querySelector(elem).classList.remove('flash');
 	}, 200);
 }
 
