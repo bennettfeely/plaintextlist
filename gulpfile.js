@@ -146,41 +146,67 @@ gulp.task("jade", function() {
 
     // Compile list pages
     sorted_index.forEach(function(list) {
-      var list_url =
-        "./dist/" + list.list_data.category + "/" + list.list_data.folder;
+      var list_url = list.list_data.category + "/" + list.list_data.folder;
 
       if (!fs.existsSync(list_url)) {
         mkDirByPathSync(list_url);
-        console.log("-- New list 📁 " + list_url);
+        console.log("-- New 📁 " + list_url);
       }
 
-      // Run Jade
-      return gulp
-        .src(["./_jade/**/index.jade"])
+      gulp
+        .src(["./_jade/**/list.jade"])
         .pipe(
           jade({
             pretty: true,
             data: {
-              full_list: sorted_full,
-              titleCase,
-              capitalize,
-              popular_list: popular_list_obj,
-              titleCase,
-              capitalize,
-              index_list: sorted_index,
-              titleCase,
+              list: list.list_data,
               capitalize
             }
           })
         )
-        .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest(list_url))
         .pipe(
-          browserSync.reload({
-            stream: true
+          htmlmin({
+            collapseWhitespace: true
           })
+        )
+        .pipe(rename("index.html"))
+        .pipe(
+          gulp.dest(
+            "./dist/" + list.list_data.category + "/" + list.list_data.folder
+          )
         );
     });
+
+    // Run Jade
+    return gulp
+      .src(["./_jade/**/index.jade"])
+      .pipe(
+        jade({
+          pretty: true,
+          data: {
+            full_list: sorted_full,
+            titleCase,
+            capitalize,
+            popular_list: popular_list_obj,
+            titleCase,
+            capitalize,
+            index_list: sorted_index,
+            titleCase,
+            capitalize
+          }
+        })
+      )
+      .pipe(
+        htmlmin({
+          collapseWhitespace: true
+        })
+      )
+      .pipe(gulp.dest("./dist"))
+      .pipe(
+        browserSync.reload({
+          stream: true
+        })
+      );
   });
 });
 
