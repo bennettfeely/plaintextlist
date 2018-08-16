@@ -217,6 +217,10 @@ gulp.task("scss", function() {
     );
 });
 
+gulp.task("build", function() {
+  gulp.run("coffee", "jade", "scss");
+});
+
 gulp.task("default", function() {
   // gulp.run('coffee', 'jade');
   gulp.run("coffee", "jade", "scss", "sync");
