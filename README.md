@@ -1,4 +1,6 @@
-# [Plain Text Lists](https://plaintextlist.com)
+# [Plain Text List](https://plaintextlist.com)
+
+![Screenshot of Plain Text List](https://www.plaintextlist.com/_img/screenshot_list_600x280.png)
 
 No popups, No unnecessary formatting. Just a bunch of quick, updated, copy and paste-able lists.
 
