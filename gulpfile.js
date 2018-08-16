@@ -1,18 +1,15 @@
 // Gulp ======================================================================
 gulp = require("gulp");
-
 jade = require("gulp-jade");
 htmlmin = require("gulp-htmlmin");
-
 sass = require("gulp-sass");
 autoprefixer = require("gulp-autoprefixer");
 cssnano = require("gulp-cssnano");
-
 coffee = require("gulp-coffee");
-
 browserSync = require("browser-sync");
 readTree = require("./readTree");
 rename = require("gulp-rename");
+
 const path = require("path");
 const fs = require("fs");
 
@@ -176,12 +173,8 @@ gulp.task("jade", function() {
             }
           })
         )
-        .pipe(
-          htmlmin({
-            collapseWhitespace: true
-          })
-        )
-        .pipe(gulp.dest("./dist"))
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest(list_url))
         .pipe(
           browserSync.reload({
             stream: true
