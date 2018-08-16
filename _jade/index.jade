@@ -16,7 +16,7 @@ section
       ul.category_list
         for category in full_list
           li.half
-            a(href='/' + category.title, class=category.title)
+            a(href=category.title, class=category.title)
               span= capitalize(category.title)
 
 section
@@ -26,7 +26,7 @@ section
       ul.popular_list
         for list in popular_list
           li
-            a(href='/' + list.category + '/' + list.folder)
+            a(href=list.category + '/' + list.folder)
               span.popular_title= list.title
               span.length= ' (' + list.length + ')'
               ol.popular_list_preview
@@ -40,7 +40,7 @@ section
       ul.index_list
         for list in index_list
           li
-            a(href='/' + list.list_data.category + '/' + list.list_data.folder)= list.list_data.title
+            a(href=list.list_data.category + '/' + list.list_data.folder)= list.list_data.title
             span.length= '(' + list.list_data.length + ')'
 
 +footer()

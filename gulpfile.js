@@ -76,7 +76,7 @@ gulp.task("coffee", function() {
   return gulp
     .src("./_coffee/*")
     .pipe(coffee())
-    .pipe(gulp.dest("./_js/"))
+    .pipe(gulp.dest("./dist/_js/"))
     .pipe(
       browserSync.reload({
         stream: true
@@ -137,7 +137,7 @@ gulp.task("jade", function() {
           collapseWhitespace: true
         }))
         .pipe(rename("index.html"))
-        .pipe(gulp.dest(dir.title));
+        .pipe(gulp.dest('./dist/' + dir.title));
     });
 
     sorted_index.forEach(function(list) {
@@ -163,7 +163,7 @@ gulp.task("jade", function() {
           collapseWhitespace: true
         }))
         .pipe(rename("index.html"))
-        .pipe(gulp.dest(list.list_data.category + "/" + list.list_data.folder));
+        .pipe(gulp.dest('./dist/' + list.list_data.category + "/" + list.list_data.folder));
     });
 
     // Run Jade
@@ -188,7 +188,7 @@ gulp.task("jade", function() {
       .pipe(htmlmin({
         collapseWhitespace: true
       }))
-      .pipe(gulp.dest("./"))
+      .pipe(gulp.dest("./dist"))
       .pipe(
         browserSync.reload({
           stream: true
@@ -209,7 +209,7 @@ gulp.task("scss", function() {
       })
     )
     .pipe(cssnano())
-    .pipe(gulp.dest("_css"))
+    .pipe(gulp.dest("./dist/_css"))
     .pipe(
       browserSync.reload({
         stream: true

@@ -1,9 +1,9 @@
-# include _header
+include _header
 include _breadcrumb
 include _ad
 include _footer
 
-# +header('Plain Text Lists on ' + capitalize(category.title), "category")
++header('Plain Text Lists on ' + capitalize(category.title), "category")
 
 +breadcrumb(category.title)
 
@@ -14,7 +14,7 @@ section
 			ul.index_list
 				for list in category.list_data
 					li
-						a(href='/' + category.title + '/' + list.folder)= list.title
+						a(href=list.folder)= list.title
 						span.length= ' (' + list.length + ')'
 		.split_container.side
 			+ad()

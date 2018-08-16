@@ -2,10 +2,10 @@ mixin breadcrumb(category, folder, title)
 	nav.breadcrumb.no_select
 		.wrapper
 			.container
-				a(href="/")= "Index"
+				a(href="https://plaintextlist.com")= "Index"
 				if category
 					span= " › "
-					a(href="/" + category)= capitalize(category)
+					a(href='https://plaintextlist.com/' + category)= capitalize(category)
 				if folder
 					span= " › "
-					a(href="/" + category + "/" + folder)= capitalize(title)
+					a(href='https://plaintextlist.com/' + category + "/" + folder)= capitalize(title)
