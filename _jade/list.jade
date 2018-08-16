@@ -1,0 +1,73 @@
+include _header
+include _breadcrumb
+include _ad
+include _footer
+
++header('Plain Text ' + list.title, "list")
+
++breadcrumb(list.category, list.folder, list.title)
+
+section
+  .wrapper.split
+    .split_container.main
+      h1.list_title.no_select= capitalize(list.title)
+      button.copy.no_select(data-clipboard-target=".content_list")
+        span= "Copy list to clipboard"
+      .content_list_wrapper
+        .content_list.default
+          each item, i in list.content
+            p.content_item(data-order=i)
+              span= item
+
+    .split_container.side.no_select
+      .meta
+        .box
+          h3 
+            span.meta_label= "List length: "
+            span.meta_value= list.length
+        if list.source_title
+          .box
+            h3
+              span.meta_label= "Source: "
+              span.meta_value
+                a(href=list.source_url)= list.source_title
+        if list.updated
+            .box
+              h3
+                span.meta_label= "Updated: "
+                span.meta_value= list.updated
+      .operations
+        h3= "List order"
+        label.box.sort_default
+          input(type="radio", onchange="sort('default')", name="sort", checked)
+          span= "Default"
+        label.box.sort_asc
+          input(type="radio", onchange="sort('asc')", name="sort")
+          span= "Sort A → Z"
+        label.box.sort_desc
+          input(type="radio", onchange="sort('desc')", name="sort")
+          span= "Sort Z → A"
+        label.box.sort_rand
+          input(type="radio", onclick="sort('rand')", name="sort")
+          span= "Randomize"
+      .operations
+        h3= "List style"
+        label.box.style_default
+          input(type="radio", onchange="listStyle('default')", name="list_style", checked)
+          span= "None"
+        label.box.style_commas
+          input(type="radio", onchange="listStyle('commas')", name="list_style")
+          span= "Commas"
+        label.box.style_numbers
+          input(type="radio", onchange="listStyle('numbers')", name="list_style")
+          span= "Numbers"
+        label.box.style_bullets
+          input(type="radio", onchange="listStyle('bullets')", name="list_style")
+          span= "Bullets"
+        label.box.style_checkboxes
+          input(type="radio", onchange="listStyle('checkboxes')", name="list_style")
+          span= "Checkboxes"
+
+      +ad()
+
++footer()

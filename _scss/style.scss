@@ -1,0 +1,575 @@
+// // Partials =========================================================
+@import "colors";
+@import "functions";
+@import "extensions";
+@import "variables";
+
+// Variables ===========================================================
+$serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+	sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+	monospace;
+
+$radius: 5px;
+
+$black: #1b1f23;
+$white: #fff;
+$offwhite: #fafafa;
+
+$shadow: 0 3px 6px rgba($black, 0.1);
+
+$mobile: 34em;
+$tablet: 64em;
+$desktop: 80em;
+
+$border_primary: cyan;
+$border_secondary: yellow;
+
+// Reset ===============================================================
+* {
+	box-sizing: border-box;
+}
+
+// Base ================================================================
+body {
+	font: 14px/1.5 $serif;
+	color: $black;
+	margin: 1em auto;
+	border: solid $border_primary;
+	border-width: thin 0;
+}
+
+// Typography ==========================================================
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+h1 {
+	font-size: 1.8em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	a {
+		font-weight: bold;
+	}
+}
+
+a {
+	color: $blue;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&:visited {
+		color: $purple;
+	}
+
+	&:active {
+		color: $red;
+	}
+}
+
+.length {
+	font-weight: normal;
+	color: $gray-700;
+}
+
+// Structure ===========================================================
+.container {
+	padding: 1em;
+	border: thin solid $border_primary;
+	border-width: 0 thin;
+	margin: 0 1em;
+}
+
+.wrapper {
+	max-width: 55em;
+	margin: 0 auto;
+
+	// &.split {
+	// 	overflow: hidden;
+
+	// 	.container {
+	// 		&:first-child {
+	// 			padding-bottom: 0;
+	// 		}
+	// 		&:last-child {
+	// 			padding: 0;
+	// 		}
+	// 	}
+	// 	@media (min-width: $tablet) {
+	// 		.container {
+	// 			float: left;
+	// 			background: red;
+
+	// 			&:first-child {
+	// 				width: calc(100% - 21em);
+	// 				padding-bottom: 1em;
+	// 				border-right: 0;
+	// 				padding-right: 0;
+	// 				margin-right: 0;
+	// 			}
+	// 			&:last-child {
+	// 				width: 18em;
+	// 			}
+	// 		}
+	// 	}
+	// }
+}
+
+.split {
+	@media (min-width: $mobile) {
+		display: flex;
+		overflow: hidden;
+	}
+}
+
+.split_container {
+	border-left: thin solid $border_primary;
+	border-right: thin solid $border_primary;
+	margin: 0 1em;
+
+	&.main {
+		padding: 1em;
+	}
+
+	@media (min-width: $mobile) {
+		display: inline-block;
+		width: calc(50% - 1em);
+		vertical-align: top;
+
+		&.main {
+			width: calc(62% - 1em);
+			margin: 0 0 0 1em;
+		}
+		&.side {
+			width: 38%;
+			margin: 0 1em 0 0;
+			border-left: 0;
+		}
+	}
+}
+
+header,
+nav,
+section {
+	border-bottom: thin solid $border_primary;
+}
+
+// Intro ===============================================================
+.intro {
+	border-bottom: thin solid $border_primary;
+}
+
+// Breadcrumb ==========================================================
+nav {
+	a:last-child {
+		font-weight: bold;
+	}
+}
+
+// Lists ===============================================================
+.category_list {
+	columns: 2;
+	column-gap: 1em;
+
+	@media (min-width: $mobile) {
+		columns: 3;
+	}
+
+	li {
+		position: relative;
+		border-top: thin solid $border_secondary;
+
+		a {
+			display: block;
+			padding: 0.5em;
+
+			&:hover {
+				text-decoration: none;
+
+				span {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+.popular_list {
+	margin-bottom: 0;
+
+	& > li {
+		display: inline-block;
+		width: calc(50% - .5em);
+		vertical-align: top;
+		border-top: thin solid $border_secondary;
+
+		&:nth-child(odd) {
+			margin-right: 1em;
+		}
+	}
+
+	a {
+		padding: .5em;
+	}
+
+	ol {
+		position: relative;
+		color: $black;
+		font-weight: normal;
+		margin: .5em 0 .5em 1em;
+		padding-left: 0;
+
+		li {
+			font-size: smaller;
+
+			@supports (text-overflow: ellipsis) {
+				list-style-position: inside;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+
+			@for $i from 1 through 3 {
+				&:nth-last-child(#{$i}) {
+					$opacity : $i * .25;
+					opacity: $opacity;
+				}
+			}
+		}
+	}
+
+	a {
+		display: block;
+		padding: .5em;
+
+		&:hover {
+			text-decoration: none;
+
+			.popular_title {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.index_list {
+	margin: 0.5em 0 0;
+	padding-bottom: 1em;
+
+	.index & {
+		@media (min-width: $tablet) {
+			columns: 2;
+			column-gap: 1em;
+		}
+	}
+
+	li {
+		position: relative;
+		border-top: thin solid $border_secondary;
+
+		a {
+			display: inline-block;
+			padding: 0.5em;
+		}
+	}
+}
+
+.list_title {
+	line-height: 1.2;
+	margin-bottom: 0.5em;
+}
+
+// Content List ========================================================
+.copy {
+	font: inherit;
+	cursor: text;
+	padding: 0.5em 1em;
+	cursor: pointer;
+	font-weight: bold;
+	border: 1px solid cyan;
+	color: $blue;
+	position: relative;
+
+	&:hover {
+		border-color: $blue $blue $white;
+	}
+}
+
+.content_list_wrapper {
+	border: thin solid transparent;
+	margin: -1px 0 0;
+
+	button:hover + & {
+		border-color: $blue;
+	}
+
+	p { margin: 0; }
+
+	ol {
+		list-style: decimal;
+		padding-left: 3em;
+	}
+
+	ul {
+		list-style: disc;
+		padding-left: 2em;
+	}
+
+	label {
+		display: block;
+		width: max-content;
+		cursor: text;
+	}
+}
+
+.content_list {
+	padding: 1em;
+	margin: 0;
+	line-height: initial;
+	list-style-position: inside;
+}
+
+.comma {
+	.commas & {
+		display: inline;
+	}
+
+	&, .content_item:last-child & {
+		display: none;
+	}
+}
+
+.checkbox {
+	display: none;
+
+	.checkboxes & {
+		display: inline;
+		margin-right: 1em;
+
+		&:checked + span {
+			text-decoration: line-through;
+		}
+	}
+}
+
+
+
+// Meta ================================================================
+.group {
+	max-height: 150vh;
+}
+
+.meta {
+	border-top: thin solid $border_primary;
+
+	@media (min-width: $mobile) {
+		border-top: none;
+	}
+}
+
+.operations {
+	padding: 1em;
+
+	@media (min-width: $mobile) {
+		border-bottom: thin solid $border_primary;
+	}
+}
+
+.box {
+	display: block;
+	padding: 1em;
+
+	.meta & {
+		border-bottom: thin solid $border_primary;
+
+		&:last-child {
+			border-color: $border_primary;
+		}
+	}
+
+	.operations & {
+		padding: 0.5em 1em;
+		color: $blue;
+		cursor: pointer;
+		font-weight: bold;
+		border-top: thin solid $border_secondary;
+
+		&.is-changed {
+			animation: flash 400ms;
+
+			@keyframes flash {
+				0% {
+					background: yellow;
+				}
+			}
+		}
+
+		&:first-of-type {
+			margin-top: 0.5em;
+		}
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	small {
+		padding-left: 0.5em;
+	}
+
+	input[type="radio"],
+	input[type="checkbox"] {
+		margin-right: 1em;
+		vertical-align: top;
+		cursor: pointer;
+	}
+}
+
+.meta_value {
+	font-weight: normal;
+}
+
+// Ad ==============================================================
+.add {
+	overflow: hidden;
+	padding: 1em;
+	text-align: center;
+	border-top: thin solid $border_primary;
+
+	@media (min-width: $mobile) {
+		border-top: none;
+		padding-top: 1.5em;
+	}
+}
+
+#carbonads {
+	max-width: 25em;
+}
+
+.carbon-img {
+	float: left;
+	margin: 0 1em 0 0;
+
+	@media (min-width: $mobile) {
+		float: none;
+		margin: 0 auto;
+	}
+
+	img {
+		border-radius: $radius;
+		vertical-align: middle;
+		background: $white;
+	}
+}
+
+.carbon-text {
+	display: block;
+	color: $black;
+
+	@media (min-width: $mobile) {
+		padding: 0.5em 0 0;
+	}
+}
+
+.carbon-poweredby {
+	display: block;
+	margin-top: 0.5em;
+	font-size: smaller;
+	color: $gray;
+}
+
+// Icons ===============================================================
+@mixin icon($emoji) {
+	&:before {
+		content: $emoji;
+		margin-right: 0.5em;
+		vertical-align: baseline;
+	}
+}
+
+.copy {
+	@include icon("📋");
+}
+
+.economics {
+	@include icon("💵");
+}
+.entertainment {
+	@include icon("🎭");
+}
+.games {
+	@include icon("🎲");
+}
+.geography {
+	@include icon("🗺️");
+}
+.language {
+	@include icon("✍️");
+}
+.math {
+	@include icon("🔢");
+}
+.politics {
+	@include icon("🏛️");
+}
+.religion {
+	@include icon("🙏");
+}
+.science {
+	@include icon("🔬");
+}
+.sports {
+	@include icon("🏅");
+}
+.tech {
+	@include icon("💻");
+}
+.time {
+	@include icon("⏰");
+}
+
+// Night mode ==========================================================
+.night_toggle_label {
+	float: right;
+
+	&, input[type="checkbox"] {
+		cursor: pointer
+	}
+
+	input[type="checkbox"] {
+		margin-right: .5em;
+	}
+}
+.night {
+	body {
+		filter: invert(1);
+		background: black;
+	}
+
+	img {
+		filter: invert(1);
+	}
+}
+
+// Utilities ===========================================================
+.no_select {
+	@extend %no-select;
+}

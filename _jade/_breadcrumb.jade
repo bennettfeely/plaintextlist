@@ -1,0 +1,11 @@
+mixin breadcrumb(category, folder, title)
+	nav.breadcrumb.no_select
+		.wrapper
+			.container
+				a(href="/")= "Index"
+				if category
+					span= " › "
+					a(href="/" + category)= capitalize(category)
+				if folder
+					span= " › "
+					a(href="/" + category + "/" + folder)= capitalize(title)
