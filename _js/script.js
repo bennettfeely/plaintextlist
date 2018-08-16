@@ -60,7 +60,8 @@ function sort(order) {
 		// Sort list
 		console.log('sort-it!')
 		tinysort('.content_item', {
-			order: order
+			order: order,
+			natural: true
 		});
 	}
 }
