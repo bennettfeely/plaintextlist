@@ -53,7 +53,10 @@ h1 {
 	font-size: 1.8em;
 
 	a {
-		color: $blue;
+		&,
+		&:visited {
+			color: $blue;
+		}
 	}
 }
 
