@@ -146,7 +146,8 @@ gulp.task("jade", function() {
 
     // Compile list pages
     sorted_index.forEach(function(list) {
-      var list_url = list.list_data.category + "/" + list.list_data.folder;
+      var list_url =
+        "./dist/" + list.list_data.category + "/" + list.list_data.folder;
 
       if (!fs.existsSync(list_url)) {
         mkDirByPathSync(list_url);

@@ -37,6 +37,6 @@ section
       ul.index_list
         for list in index_list
           li
-            a(href=list.list_data.category + '/' + list.list_data.folder)= list.list_data.title
+            a(href=list.list_data.category + '/' + list.list_data.folder, title=preview)= list.list_data.title
             span.length= '(' + list.list_data.length + ')'
 +footer()
