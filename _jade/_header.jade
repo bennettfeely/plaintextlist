@@ -22,7 +22,7 @@ mixin header(title, class_name)
 			meta(name="apple-mobile-web-app-title", content="Plain Text List")
 			link(rel='stylesheet', href='/_css/style.css')
 		!= "<body>"
-			header.no_select.no_print
+			header.no_select.no_print(role="banner")
 				.wrapper
 					.container
 						h1

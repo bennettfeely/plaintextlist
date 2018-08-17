@@ -9,7 +9,7 @@ include _footer
 
 section
   .wrapper.split
-    .split_container.main
+    .split_container.main(role="article")
       h1.list_title.no_select= capitalize(list.title)
       .copy_wrapper
       .content_list_wrapper
@@ -18,7 +18,7 @@ section
             p.content_item(data-order=i)
               span= item
 
-    .split_container.side.no_select
+    .split_container.side.no_select(role="complementary")
       .meta
         .box.length_box
           h3 
