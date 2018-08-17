@@ -8,7 +8,6 @@ section.intro
   .wrapper
     .container
       h3 No popups, No unnecessary formatting. Just a bunch of quick, updated, copy and paste-able lists.
-
 section
   .wrapper
     .container
@@ -18,7 +17,6 @@ section
           li.half
             a(href=category.title, class=category.title)
               span= capitalize(category.title)
-
 section
   .wrapper
     .container
@@ -32,7 +30,6 @@ section
               ol.popular_list_preview
                 - for (var i = 0; i < 4; i++)
                   li= list.content[i]
-
 section
   .wrapper
     .container
@@ -42,5 +39,4 @@ section
           li
             a(href=list.list_data.category + '/' + list.list_data.folder)= list.list_data.title
             span.length= '(' + list.list_data.length + ')'
-
 +footer()
