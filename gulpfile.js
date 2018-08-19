@@ -211,6 +211,29 @@ gulp.task("jade", function() {
   });
 });
 
+// Compile submit page
+gulp.task("submit", function() {
+  return gulp
+    .src(["./_jade/submit.jade"])
+    .pipe(
+      jade({
+        pretty: false
+      })
+    )
+    .pipe(
+      htmlmin({
+        collapseWhitespace: true
+      })
+    )
+    .pipe(rename("index.html"))
+    .pipe(gulp.dest("./dist/submit"))
+    .pipe(
+      browserSync.reload({
+        stream: true
+      })
+    );
+});
+
 // Compile SCSS
 gulp.task("scss", function() {
   return gulp
@@ -249,7 +272,13 @@ gulp.task("default", function() {
   gulp.watch("./_scss/*", function() {
     return gulp.run("scss");
   });
-  return gulp.watch(["./_jade/**/*.jade", "./_csv/**/*"], function() {
-    return gulp.run("jade");
+  gulp.watch(["./_jade/submit.jade"], function() {
+    return gulp.run("submit");
   });
+  return gulp.watch(
+    ["./_jade/**/*.jade", "!./_jade/submit.jade", "./_csv/**/*"],
+    function() {
+      return gulp.run("jade");
+    }
+  );
 });

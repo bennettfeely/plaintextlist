@@ -22,8 +22,8 @@ $mobile: 34em;
 $tablet: 64em;
 $desktop: 80em;
 
-$border_primary: cyan;
-$border_secondary: yellow;
+$border_primary: #e5e5e5;
+$border_secondary: #eee;
 
 // Reset ===============================================================
 * {
@@ -34,9 +34,7 @@ $border_secondary: yellow;
 body {
 	font: 14px/1.5 $serif;
 	color: $black;
-	margin: 1em auto;
-	border: solid $border_primary;
-	border-width: thin 0;
+	margin: 0 auto;
 }
 
 // Typography ==========================================================
@@ -103,6 +101,27 @@ a {
 	color: $gray-700;
 }
 
+input[type="email"],
+input[type="text"],
+input[type="url"],
+textarea {
+	display: block;
+	font: inherit;
+	width: 100%;
+	max-width: 30em;
+	border: thin solid cyan;
+	padding: 0.25em 0.5em;
+	margin-top: 0.5em;
+
+	&:hover,
+	&:focus {
+		border-color: $blue;
+	}
+}
+
+textarea {
+}
+
 // Structure ===========================================================
 .container {
 	padding: 1em;
@@ -114,36 +133,6 @@ a {
 .wrapper {
 	max-width: 55em;
 	margin: 0 auto;
-
-	// &.split {
-	// 	overflow: hidden;
-
-	// 	.container {
-	// 		&:first-child {
-	// 			padding-bottom: 0;
-	// 		}
-	// 		&:last-child {
-	// 			padding: 0;
-	// 		}
-	// 	}
-	// 	@media (min-width: $tablet) {
-	// 		.container {
-	// 			float: left;
-	// 			background: red;
-
-	// 			&:first-child {
-	// 				width: calc(100% - 21em);
-	// 				padding-bottom: 1em;
-	// 				border-right: 0;
-	// 				padding-right: 0;
-	// 				margin-right: 0;
-	// 			}
-	// 			&:last-child {
-	// 				width: 18em;
-	// 			}
-	// 		}
-	// 	}
-	// }
 }
 
 .split {
@@ -308,19 +297,32 @@ nav {
 }
 
 // Content List ========================================================
-.copy {
+button {
 	background: $white;
 	font: inherit;
 	cursor: text;
-	padding: 0.5em 1em;
+	padding: 0.375em 1em;
 	cursor: pointer;
 	font-weight: bold;
-	border: 1px solid cyan;
+	border: 1px solid transparent;
+	background: rgba($blue, 0.125em);
 	color: $blue;
 	position: relative;
 
+	&[type="submit"] {
+		&:after {
+			content: "➡️";
+			margin-left: 0.5em;
+		}
+	}
+
 	&:hover,
 	&:focus {
+		border-color: $blue;
+	}
+
+	&.copy:hover,
+	&.copy:focus {
 		border-color: $blue $blue transparent;
 	}
 
@@ -334,7 +336,7 @@ nav {
 }
 
 .content_list_wrapper {
-	border: thin solid transparent;
+	border: 1px solid transparent;
 	margin: -1px 0 0;
 
 	button:hover + & {
@@ -422,6 +424,18 @@ nav {
 	display: block;
 	padding: 1em;
 
+	.submit & {
+		margin: 1em 0;
+		padding: 1em 0;
+		border-top: thin solid yellow;
+	}
+
+	small {
+		display: block;
+		line-height: 1.2;
+		margin: 0.5em 0;
+	}
+
 	.meta & {
 		border-bottom: thin solid $border_primary;
 
@@ -446,10 +460,6 @@ nav {
 		}
 	}
 
-	small {
-		padding-left: 0.5em;
-	}
-
 	input[type="radio"],
 	input[type="checkbox"] {
 		margin-right: 1em;
@@ -458,8 +468,8 @@ nav {
 	}
 }
 
-.meta_value {
-	font-weight: normal;
+.meta_label {
+	font-weight: bold;
 }
 
 // Ad ==============================================================
@@ -559,6 +569,22 @@ nav {
 }
 .time {
 	@include icon("⏰");
+}
+
+// Submit =============================================================
+.submit {
+	h3 {
+		margin: 0.5em 0;
+	}
+	ul {
+		margin: 0 1em;
+		list-style: disc;
+		list-style-position: inside;
+	}
+
+	.bad li {
+		color: $gray;
+	}
 }
 
 // Utilities ===========================================================
