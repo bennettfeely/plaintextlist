@@ -108,8 +108,7 @@ textarea {
 	display: block;
 	font: inherit;
 	width: 100%;
-	max-width: 30em;
-	border: thin solid cyan;
+	border: thin solid $border_primary;
 	padding: 0.25em 0.5em;
 	margin-top: 0.5em;
 
@@ -427,7 +426,7 @@ button {
 	.submit & {
 		margin: 1em 0;
 		padding: 1em 0;
-		border-top: thin solid yellow;
+		border-top: thin solid $border_secondary;
 	}
 
 	small {

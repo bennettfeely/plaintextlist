@@ -2,7 +2,7 @@ include _header
 include _breadcrumb
 include _footer
 
-+header("Sumbit a plain text list", "submit")
++header("Sumbit a list", "submit")
 
 section
 	.wrapper
@@ -13,45 +13,45 @@ section
 				li Is backed by a reputable source
 				li Is objective and definitive
 					ul.bad
-						li Bad: List of coolest restaurants in London
-						li Bad: List of the best bands
+						li Bad: <i>List of coolest restaurants in London</i>
+						li Bad: <i>List of the best bands</i>
 				li Is finite (preferably &lt;2000 items length)
 					ul.bad
-						li Bad: List of colors
-						li Bad: List of stars
+						li Bad: <i>List of colors</i>
+						li Bad: <i>List of stars</i>
 				li Is appropriate for all ages
 				li Isn't a scam or spam
 					ul.bad
-						li Bad: List of ICOs
+						li Bad: <i>List of ICOs</i>
 			h3 I will review all submissions and let you know if your list has been approved and published.
-
-			form(name="submission", netlify)
+			form(action="/success", name="submission", autocomplete="off", netlify)
 				.box
 					label
 						.meta_label List title 
 						small.meta_value e.g. List of Countries, List of Prime Ministers of Canada
-						input(type="text", name="list_title", autocomplete="off")
+						input(type="text", name="list_title", autocomplete="off", required)
 				.box
 					label
 						.meta_label List source name
 						small.meta_value e.g. NASA, Georgia State University
-						input(type="text", name="list_source", autocomplete="off")
+						input(type="text", name="list_source", autocomplete="off", required)
 				.box
 					label
 						.meta_label List source url
 						small.meta_value Preferably HTTPS
-						input(type="url", name="list_source_url", placeholder="https://...")
+						input(type="url", name="list_source_url", placeholder="https://...", required)
 				.box
 					.meta_label List data
 					small.meta_value Insert a new line for each data item. Omit line numbers or any other formatting.
-					textarea.list(rows="15")
+					textarea.list(rows="15", required)
 				.box
 					label
 						.meta_label Your email
 						small.meta_value Optional. I will let you know if your list has been accepted and published.
 						input(type="email", name="email_contact")
-				//- .box
-				//- 	button(type="submit") 
-				//- 		span Submit list
+				.box
+					div(data-netlify-recaptcha)
+					button(type="submit") 
+						span Submit list
 
 +footer()

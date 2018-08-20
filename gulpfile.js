@@ -234,6 +234,29 @@ gulp.task("submit", function() {
     );
 });
 
+// Compile success page
+gulp.task("success", function() {
+  return gulp
+    .src(["./_jade/success.jade"])
+    .pipe(
+      jade({
+        pretty: false
+      })
+    )
+    .pipe(
+      htmlmin({
+        collapseWhitespace: true
+      })
+    )
+    .pipe(rename("index.html"))
+    .pipe(gulp.dest("./dist/success"))
+    .pipe(
+      browserSync.reload({
+        stream: true
+      })
+    );
+});
+
 // Compile SCSS
 gulp.task("scss", function() {
   return gulp
@@ -274,6 +297,9 @@ gulp.task("default", function() {
   });
   gulp.watch(["./_jade/submit.jade"], function() {
     return gulp.run("submit");
+  });
+  gulp.watch(["./_jade/success.jade"], function() {
+    return gulp.run("success");
   });
   return gulp.watch(
     ["./_jade/**/*.jade", "!./_jade/submit.jade", "./_csv/**/*"],
