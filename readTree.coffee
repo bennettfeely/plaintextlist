@@ -48,8 +48,8 @@ get = (cb) ->
                 updated = content_array[0].replace("[Updated: ","").replace("]","")
                 content_array.shift();
               
-              console.log(filename);
-              console.log(source_title);
+              # console.log(filename);
+              # console.log(source_title);
               if content_array[1].startsWith("[Updated: ")
                 updated = content_array[1].replace("[Updated: ","").replace("]","")
                 content_array.shift();

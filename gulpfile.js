@@ -120,7 +120,7 @@ gulp.task("jade", function() {
 
       if (!fs.existsSync(dir.title)) {
         mkDirByPathSync("./dist/" + dir.title);
-        console.log("New 📁 ./dist/" + dir.title);
+        // console.log("New 📁 ./dist/" + dir.title);
       }
 
       // Compile category pages
@@ -151,7 +151,7 @@ gulp.task("jade", function() {
 
       if (!fs.existsSync(list_url)) {
         mkDirByPathSync(list_url);
-        console.log("-- New 📁 " + list_url);
+        // console.log("-- New 📁 " + list_url);
       }
 
       gulp

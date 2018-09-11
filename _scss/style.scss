@@ -48,6 +48,7 @@ h6 {
 }
 
 h1 {
+	line-height: 2rem;
 	font-size: 1.8em;
 
 	a {
@@ -116,9 +117,6 @@ textarea {
 	&:focus {
 		border-color: $blue;
 	}
-}
-
-textarea {
 }
 
 // Structure ===========================================================
@@ -304,14 +302,16 @@ button {
 	cursor: pointer;
 	font-weight: bold;
 	border: 1px solid transparent;
-	background: rgba($blue, 0.125em);
+	background: $yellow-200;
 	color: $blue;
 	position: relative;
 
 	&[type="submit"] {
+		margin-top: 1em;
+
 		&:after {
 			content: "➡️";
-			margin-left: 0.5em;
+			margin-left: 0.5rem;
 		}
 	}
 
@@ -328,22 +328,17 @@ button {
 	&:hover span {
 		text-decoration: underline;
 	}
-
-	&:focus {
-		outline: none;
-	}
 }
 
 .content_list_wrapper {
+	padding: 1em 0 0;
 	border: 1px solid transparent;
 	margin: -1px 0 0;
 
-	button:hover + & {
-		border-color: $blue;
-	}
-
+	button:hover + &,
 	button:focus + & {
 		border-color: $blue;
+		padding: 1em;
 	}
 
 	p {
@@ -368,8 +363,6 @@ button {
 }
 
 .content_list {
-	padding: 1em;
-	margin: 0;
 	line-height: initial;
 	list-style-position: inside;
 }
@@ -524,9 +517,13 @@ button {
 @mixin icon($emoji) {
 	&:before {
 		content: $emoji;
-		margin-right: 0.5em;
+		margin-right: 0.25rem;
 		vertical-align: baseline;
 	}
+}
+
+.submit_button {
+	@include icon("✏️");
 }
 
 .copy {
@@ -571,6 +568,12 @@ button {
 }
 
 // Submit =============================================================
+.submit_button {
+	display: inline-block;
+	font-size: 1rem;
+	float: right;
+}
+
 .submit {
 	h3 {
 		margin: 0.5em 0;
@@ -648,7 +651,7 @@ button {
 
 	@keyframes flash {
 		0% {
-			background: yellow;
+			background: $yellow-200;
 		}
 	}
 }
