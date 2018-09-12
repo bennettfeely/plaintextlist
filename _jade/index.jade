@@ -14,38 +14,38 @@ section.intro
   //-   .wrapper
   //-     .container
   //-       input.search(type="text", placeholder="Search...")
-  
-  section.categories_index_section
-    .wrapper
-      .container
-        h2= "Index of Categories"
-        ul.category_list
-          for category in full_list
-            li.half
-              a(href=category.title, class=category.title)
-                span= capitalize(category.title)
-  
-  section.popular_lists_section
-    .wrapper
-      .container
-        h2= "Popular Lists"
-        ul.popular_list
-          for list in popular_list
-            li
-              a(href=list.category + '/' + list.folder)
-                span.popular_title= list.title
-                span.length= ' (' + list.length + ')'
-                ol.popular_list_preview
-                  - for (var i = 0; i < 4; i++)
-                    li= list.content[i]
-  section
-    .wrapper
-      .container
-        h2= "Complete Index of Lists"
-        ul.list.index_list
-          for list in index_list
-            li
-              a(href=list.list_data.category + '/' + list.list_data.folder)
-                span.list_item= list.list_data.title
-              span.length= ' (' + list.list_data.length + ')'
+
+section.categories_index_section
+  .wrapper
+    .container
+      h2= "Index of Categories"
+      ul.category_list
+        for category in full_list
+          li.half
+            a(href=category.title, class=category.title)
+              span= capitalize(category.title)
+
+section.popular_lists_section
+  .wrapper
+    .container
+      h2= "Popular Lists"
+      ul.popular_list
+        for list in popular_list
+          li
+            a(href=list.category + '/' + list.folder)
+              span.popular_title= list.title
+              span.length= ' (' + list.length + ')'
+              ol.popular_list_preview
+                - for (var i = 0; i < 4; i++)
+                  li= list.content[i]
+section
+  .wrapper
+    .container
+      h2= "Complete Index of Lists"
+      ul.list.index_list
+        for list in index_list
+          li
+            a(href=list.list_data.category + '/' + list.list_data.folder)
+              span.list_item= list.list_data.title
+            span.length= ' (' + list.list_data.length + ')'
 +footer()
