@@ -113,7 +113,7 @@ textarea {
 	display: block;
 	font: inherit;
 	width: 100%;
-	border: thin solid shade($border_primary, 0%);
+	border: thin solid mix($border_primary, $blue);
 	padding: 0.25em 0.5em;
 	margin-top: 0.5em;
 
