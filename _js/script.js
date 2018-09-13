@@ -1,14 +1,22 @@
 var html = document.querySelector("html");
 var content_list_wrapper = document.querySelector(".content_list_wrapper");
 
-console.log("testing123");
-
+// Search
 var item_list = new List("search_wrapper", {
-	valueNames: ["list_item"]
+	valueNames: ["list_item", { attr: "href", name: "list_link" }]
 });
 
-item_list.on("search_start", function() {
-	document.querySelector(".hide_on_search").style.display = "none";
+item_list.on("updated", function(e) {
+	console.log(e);
+
+	if (e.matchingItems.length == 0) {
+		document.querySelector(".results").innerHTML = "No lists found";
+	} else if (e.matchingItems.length == 1) {
+		document.querySelector(".results").innerHTML = "Found 1 list";
+	} else if (e.matchingItems.length >= 2) {
+		document.querySelector(".results").innerHTML =
+			"Found " + e.matchingItems.length + " lists";
+	}
 });
 
 // List functions
@@ -43,8 +51,7 @@ if (document.querySelector("html").classList.contains("list")) {
 
 		var clipboard = new ClipboardJS(".copy");
 		clipboard.on("success", function(e) {
-			flash(".copy");
-			flash(".content_list");
+			flash(".content_list_wrapper");
 
 			document.querySelector(".copy").innerHTML =
 				list_items.length + " items copied!";

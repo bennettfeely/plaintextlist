@@ -1,14 +1,21 @@
 var html = document.querySelector("html");
 var content_list_wrapper = document.querySelector(".content_list_wrapper");
 
-console.log("testing123");
-
+// Search
 var item_list = new List("search_wrapper", {
-	valueNames: ["list_item"]
+	valueNames: ["list_item", { attr: "data-category" }]
 });
 
-item_list.on("search_start", function() {
-	document.querySelector(".hide_on_search").style.display = "none";
+item_list.on("updated", function(e) {
+	console.log("UPDATED!");
+	console.log(e);
+
+	if (e.matchingItems > 0) {
+		document.querySelector(".results").innerHTML =
+			"Showing " + e.matchingItems.length + " lists";
+	} else {
+		document.querySelector(".results").innerHTML = "No lists found.";
+	}
 });
 
 // List functions

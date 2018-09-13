@@ -22,8 +22,12 @@ $mobile: 34em;
 $tablet: 64em;
 $desktop: 80em;
 
-$border_primary: #e5e5e5;
-$border_secondary: #eee;
+$border_primary: #ddd;
+$border_secondary: #ddd;
+
+$border: $blue-200;
+$border_primary: $border;
+$border_secondary: $border;
 
 // Reset ===============================================================
 * {
@@ -109,7 +113,7 @@ textarea {
 	display: block;
 	font: inherit;
 	width: 100%;
-	border: thin solid $border_primary;
+	border: thin solid shade($border_primary, 0%);
 	padding: 0.25em 0.5em;
 	margin-top: 0.5em;
 
@@ -270,15 +274,44 @@ nav {
 	}
 }
 
+// Search ==============================================================
+.search_field {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 1em 0;
+
+	input {
+		flex: 1;
+		margin: 0 0 0 1rem;
+
+		@media (min-width: $mobile) {
+			max-width: 15em;
+		}
+	}
+}
+
+.results {
+	font-size: smaller;
+	flex: 1 0 100%;
+	margin: 0.5rem 0 0;
+	text-align: right;
+
+	@media (min-width: $mobile) {
+		margin: 0 0 0 1rem;
+		flex: none;
+	}
+}
+
 .index_list {
 	margin: 0.5em 0 0;
 	padding-bottom: 1em;
 
 	.index & {
-		@media (min-width: $tablet) {
-			columns: 2;
-			column-gap: 1em;
-		}
+		// @media (min-width: $tablet) {
+		// 	columns: 2;
+		// 	column-gap: 1em;
+		// }
 	}
 
 	li {
@@ -520,6 +553,10 @@ button {
 		margin-right: 0.25rem;
 		vertical-align: baseline;
 	}
+}
+
+.search_label {
+	@include icon("🔎");
 }
 
 .submit_button {
