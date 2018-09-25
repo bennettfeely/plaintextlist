@@ -120,7 +120,6 @@ gulp.task("jade", function() {
 
       if (!fs.existsSync(dir.title)) {
         mkDirByPathSync("./dist/" + dir.title);
-        // console.log("New 📁 ./dist/" + dir.title);
       }
 
       // Compile category pages
@@ -178,8 +177,8 @@ gulp.task("jade", function() {
         );
     });
 
-    // Run Jade
-    return gulp
+    // Compile homepage
+    gulp
       .src(["./_jade/**/index.jade"])
       .pipe(
         jade({
@@ -281,9 +280,9 @@ gulp.task("scss", function() {
 
 // Build task for deployment
 gulp.task("build", function() {
-  gulp.run("coffee", "jade", "scss");
-  gulp.src("_img/*").pipe(gulp.dest("./dist/_img"));
-  gulp.src("_js/*").pipe(gulp.dest("./dist/_js"));
+  gulp.run("coffee", "jade", "submit", "success", "scss");
+  // gulp.src("_img/*").pipe(gulp.dest("./dist/_img"));
+  // gulp.src("_js/*").pipe(gulp.dest("./dist/_js"));
 });
 
 gulp.task("default", function() {
@@ -301,10 +300,7 @@ gulp.task("default", function() {
   gulp.watch(["./_jade/success.jade"], function() {
     return gulp.run("success");
   });
-  return gulp.watch(
-    ["./_jade/**/*.jade", "!./_jade/submit.jade", "./_csv/**/*"],
-    function() {
-      return gulp.run("jade");
-    }
-  );
+  return gulp.watch(["./_jade/**/*.jade"], function() {
+    return gulp.run("jade");
+  });
 });

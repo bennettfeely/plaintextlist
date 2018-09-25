@@ -2,7 +2,7 @@ include _header
 include _breadcrumb
 include _footer
 
-+header("Sumbit a list", "submit")
++header("Sumbit a Plain Text List", "submit")
 
 section
 	.wrapper
@@ -19,37 +19,42 @@ section
 					ul.bad
 						li Bad: <i>List of colors</i>
 						li Bad: <i>List of stars</i>
+				li Is in a logical order
+				li Doesn't need regular updates
+					ul.bad
+						li Bad: <i>List of New York Yankees</i>
+						li Bad: <i>List of Richest People in the World</i>
 				li Is appropriate for all ages
 				li Isn't spam or a scam
 			h3 I will review every submission and let you know if your list has been approved and published. Thank you!
-			form(action="/success", name="submission", autocomplete="off", netlify)
+			form(action="/success", name="plaintextlist.com submission", autocomplete="off", netlify)
 				.box
 					label
 						.meta_label List title 
 						small.meta_value e.g. List of Countries, List of Prime Ministers of Canada
-						input(type="text", name="title", autocomplete="off", required)
+						input.form_element(type="text", name="title", autocomplete="off", required)
 				.box
 					label
 						.meta_label List source name
 						small.meta_value e.g. NASA, Georgia State University
-						input(type="text", name="source_name", autocomplete="off", required)
+						input.form_element(type="text", name="source_name", autocomplete="off", required)
 				.box
 					label
 						.meta_label List source url
 						small.meta_value Preferably HTTPS
-						input(type="url", name="source_url", placeholder="https://...", required)
+						input.form_element(type="url", name="source_url", placeholder="https://...", required)
 				.box
 					.meta_label List data
 					small.meta_value Insert a new line for each data item. Do not include line numbers, bullet points, or any other formatting.
-					textarea.list(rows="15", name="content", required)
+					textarea.form_element(rows="15", name="content", required)
 				.box
 					label
 						.meta_label Your email
 						small.meta_value Optional. I will let you know if your list has been accepted and published.
 						input(type="email", name="email")
 				.box
-					div(data-netlify-recaptcha)
-					button(type="submit") 
+					textare(id="csv_preview")
+					button(id="submit_list", type="submit") 
 						span Submit list
 
 +footer()
