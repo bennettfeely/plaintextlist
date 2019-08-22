@@ -26,6 +26,7 @@ titleCase = function(str) {
 };
 
 capitalize = function(str) {
+  console.log("str: " + str);
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
@@ -82,16 +83,24 @@ gulp.task("coffee", function() {
 
 // Compile jade
 gulp.task("jade", function() {
+  console.log("11111 WE ROLLIN");
+
   return readTree(function(
     err,
     full_list_obj,
     popular_list_obj,
     index_list_obj
   ) {
+    console.log("????????? REDD??");
+
     if (err) {
+      console.log("22222 WE ERRORER");
+
       console.error("Error loading tree", err);
       return;
     }
+
+    console.log("22222 WE ROLLIN");
 
     // Sort the list in categories
     sorted_full = [];
@@ -150,7 +159,7 @@ gulp.task("jade", function() {
 
       if (!fs.existsSync(list_url)) {
         mkDirByPathSync(list_url);
-        // console.log("-- New 📁 " + list_url);
+        console.log("-- New 📁 " + list_url);
       }
 
       gulp
@@ -175,6 +184,9 @@ gulp.task("jade", function() {
             "./dist/" + list.list_data.category + "/" + list.list_data.folder
           )
         );
+      console.log(
+        "-- Create " + list.list_data.category + "/" + list.list_data.folder
+      );
     });
 
     // Compile homepage
@@ -207,6 +219,8 @@ gulp.task("jade", function() {
           stream: true
         })
       );
+
+    console.log("Compiling homepage");
   });
 });
 
@@ -231,6 +245,8 @@ gulp.task("submit", function() {
         stream: true
       })
     );
+
+  console.log("Compiling submit page");
 });
 
 // Compile success page
@@ -254,6 +270,8 @@ gulp.task("success", function() {
         stream: true
       })
     );
+
+  console.log("Compiling submit success page");
 });
 
 // Compile SCSS
@@ -276,6 +294,8 @@ gulp.task("scss", function() {
         stream: true
       })
     );
+
+  console.log("Compiling SCSS");
 });
 
 // Build task for deployment
